@@ -1,0 +1,47 @@
+digraph G {//ข้อ ก
+    // Define nodes
+    X [label="x(t)"];
+    dX [label="dx(t)/dt"];
+    Y [label="y(t)"];
+    dY [label="dy(t)/dt"];
+    Sum1 [label="+" shape=circle];
+    Sum2 [label="+" shape=circle];
+    Gain1 [label="5" shape=rect];
+    Gain2 [label="2" shape=rect];
+    Gain3 [label="3" shape=rect];
+
+    // Define edges
+    X -> Gain3 [label="3x(t)"];
+    Gain3 -> Sum1;
+    dX -> Sum1 [label="dx(t)/dt"];
+    Sum1 -> Gain1;
+    Gain1 -> Sum2;
+    Y -> Gain2 [label="2y(t)"];
+    Gain2 -> Sum2;
+    Sum2 -> dY;
+}
+
+digraph G {//ข้อ ข
+    // Define nodes
+    X [label="x(t)"];
+    dX [label="dx(t)/dt"];
+    Y [label="y(t)"];
+    IntY [label="Integral of y(t)"];
+    Sum1 [label="+" shape=circle];
+    Sum2 [label="+" shape=circle];
+    Gain1 [label="0.5" shape=rect];
+    Gain2 [label="0.8" shape=rect];
+    Gain3 [label="2" shape=rect];
+    Integrator [label="Integral" shape=rect];
+
+    // Define edges
+    Y -> Gain1 [label="0.5y(t)"];
+    Y -> Integrator;
+    Integrator -> Gain2 [label="0.8"];
+    Gain2 -> Sum1;
+    Gain1 -> Sum1;
+    Sum1 -> Sum2;
+    X -> Sum2;
+    dX -> Gain3 [label="2dx(t)/dt"];
+    Gain3 -> Sum2;
+}
